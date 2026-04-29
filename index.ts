@@ -22,6 +22,7 @@ app.post("/github/webhook", async (c) => {
     console.log("push event detected");
   }
 
+  console.log(data)
   return c.text("ok", 200);
 });
 
