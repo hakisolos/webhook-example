@@ -8,15 +8,22 @@ app.get("/", async(c) => {
 })
 
 
-app.post("/github/webhook", async(c) => {
-    const event = c.req.header('x-github-event')
-    const data = await c.req.json()
+app.post("/github/webhook", async (c) => {
+  const event = c.req.header("x-github-event");
 
-    if(event == "push"){
-        console.log("push event detected")
-    }
-    return c.text("ok",200)
-})
+  let data;
+  try {
+    data = await c.req.json();
+  } catch {
+    return c.text("invalid json", 400);
+  }
+
+  if (event === "push") {
+    console.log("push event detected");
+  }
+
+  return c.text("ok", 200);
+});
 
 
 Bun.serve({
