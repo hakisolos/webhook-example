@@ -15,7 +15,7 @@ app.post("/github/webhook", async(c) => {
     if(event == "push"){
         console.log("push event detected")
     }
-    c.status(200)
+    return c.status(200)
 })
 
 
